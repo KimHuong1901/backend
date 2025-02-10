@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class OrderService implements IOrderService {
     @Autowired
     private OrderRepository orderRepository;
     @Override
-    public Page<Order> findByDate(Date date, Integer pageable) {
+    public Page<Order> findByDate(LocalDate date, Integer pageable) {
         return orderRepository.findAllByDateBetween(date, date, PageRequest.of(pageable, 5));
     }
 

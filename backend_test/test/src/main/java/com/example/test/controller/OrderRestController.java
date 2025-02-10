@@ -5,10 +5,12 @@ import com.example.test.service.IOrderService;
 import com.example.test.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.NoSuchElementException;
 
@@ -21,11 +23,7 @@ public class OrderRestController {
     @Autowired
     private IProductService productService;
     @GetMapping
-    public ResponseEntity<Page<Order>> getAllOrders(@RequestParam(defaultValue = "") Date date) {
-        return new ResponseEntity<>(orderService.findByDate(date, 0), HttpStatus.OK);
-    }
-    @GetMapping("/search_product")
-    public ResponseEntity<Page<Order>> searchByProducts(@RequestParam(defaultValue = "") String productName) {
+    public ResponseEntity<Page<Order>> getAllOrders(@RequestParam(defaultValue = "") String productName) {
         return new ResponseEntity<>(orderService.findByProductName(productName, 0), HttpStatus.OK);
     }
     @GetMapping("/{id}")
