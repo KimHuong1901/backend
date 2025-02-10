@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface IProductService  {
     List<Product> getAll();
-    Page<Product> findByName(String name, Integer pageable);
 }
